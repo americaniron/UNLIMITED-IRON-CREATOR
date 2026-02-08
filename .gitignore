@@ -38,3 +38,27 @@ Thumbs.db
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated media files (optional - uncomment if you don't want to track them)
+# generated_media/
+
+# Cloudflare configuration files (sensitive)
+.cloudflared/
+**/credentials.json
+**/*.json.secret
+
+# Environment files
+.env
+.env.local
+*.env
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp

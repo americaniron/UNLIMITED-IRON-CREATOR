@@ -70,6 +70,16 @@ pip install -r requirements.txt
 chmod +x multimedia_generator.py
 ```
 
+### Web Interface
+
+Run the Streamlit web application:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Then open your browser to `http://localhost:8501` to access the interactive interface.
+
 ### Basic Usage
 
 #### Generate Text
@@ -338,17 +348,66 @@ The framework is designed to be extensible. To integrate with real AI services:
 - **Audio**: ElevenLabs, Google TTS, Azure Speech, MusicGen
 - **Video**: Runway, Pika, Stable Video Diffusion, Synthesia
 
+## ☁️ Deployment
+
+### Deploy to Cloudflare
+
+Deploy your app to Cloudflare infrastructure with full features:
+
+```bash
+# Quick deployment using the helper script
+chmod +x deploy-cloudflare.sh
+./deploy-cloudflare.sh
+```
+
+**See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for complete deployment instructions.**
+
+### Deploy to Google Cloud Run
+
+Deploy to Google Cloud Run with one command:
+
+```bash
+gcloud run deploy unlimited-iron-creator \
+  --source . \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --memory 2Gi \
+  --cpu 2
+```
+
+**See [DEPLOYMENT.md](DEPLOYMENT.md) for complete Google Cloud deployment instructions.**
+
+### Docker
+
+Run in Docker locally or on any cloud provider:
+
+```bash
+# Build and run
+docker build -t unlimited-iron-creator .
+docker run -p 8080:8080 unlimited-iron-creator
+
+# Or use Docker Compose
+docker-compose -f docker-compose.cloudflare.yml up
+```
+
 ## 🛠️ Development
 
 ### Project Structure
 ```
 UNLIMITED-IRON-CREATOR/
-├── multimedia_generator.py    # Main generator script
-├── requirements.txt           # Python dependencies
-├── config.example.json       # Example configuration
-├── project_example.json      # Example project config
-├── README.md                 # This file
-└── generated_media/          # Output directory (created automatically)
+├── multimedia_generator.py         # Main generator script
+├── streamlit_app.py               # Streamlit web interface
+├── requirements.txt               # Python dependencies
+├── Dockerfile                     # Docker configuration
+├── docker-compose.cloudflare.yml  # Docker Compose for Cloudflare
+├── deploy-cloudflare.sh           # Cloudflare deployment helper
+├── wrangler.toml                  # Cloudflare configuration
+├── config.example.json            # Example configuration
+├── project_example.json           # Example project config
+├── CLOUDFLARE_DEPLOYMENT.md       # Cloudflare deployment guide
+├── DEPLOYMENT.md                  # Google Cloud deployment guide
+├── README.md                      # This file
+└── generated_media/               # Output directory (created automatically)
 ```
 
 ### Running Tests
